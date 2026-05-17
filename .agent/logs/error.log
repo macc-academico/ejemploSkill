@@ -1,0 +1,2 @@
+[2026-05-17T15:11:35] [WARN] Redundancia arquitectónica detectada: Carpeta plural '.agents/' y carpeta singular '.agent/' coexistían. Resolución: Unificado el contenido en '.agent/skills/presentacion-agent/' y eliminado '.agents/' del disco.
+[2026-05-17T15:30:43] [WARN] Contraste visual deficiente: Las clases de utilidad de Bootstrap '.text-secondary' y '.text-muted' reducían drásticamente la legibilidad en modo oscuro. Resolución: Sobrescritas las clases en 'css/styles.css' inyectando variables HSL slate claras con directiva '!important'.

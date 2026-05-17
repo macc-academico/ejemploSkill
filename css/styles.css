@@ -1,0 +1,456 @@
+/* 🌌 Estilos del Ecosistema .agent — Glassmorphism & Cyberpunk Premium */
+
+/* 🎨 Variables y Paleta de Colores Curada */
+:root {
+    --bg-dark: #05070f;
+    --bg-surface: rgba(18, 22, 45, 0.75);
+    --bg-surface-active: rgba(30, 36, 75, 0.9);
+    --border-color: rgba(255, 255, 255, 0.12);
+    --border-color-glow: rgba(0, 242, 254, 0.6);
+    
+    /* Neones HSL */
+    --neon-cyan: #00f2fe;
+    --neon-purple: #8e2de2;
+    --neon-purple-light: #4a00e0;
+    --neon-pink: #ff007f;
+    --neon-green: #39ff14;
+    
+    /* Texto - Alta Visibilidad para Charlas/Presentaciones */
+    --text-primary: #ffffff;
+    --text-secondary: #f1f5f9; /* Mucho más claro y visible (slate-100) */
+    --text-muted: #cbd5e1;     /* Mucho más claro que el anterior (slate-300) */
+    
+    /* Tipografía */
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Space Grotesk', sans-serif;
+}
+
+/* 🪐 Configuración General y Fondos */
+body {
+    background-color: var(--bg-dark);
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(142, 45, 226, 0.22) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(0, 242, 254, 0.18) 0%, transparent 40%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 1.2rem; /* Letra base ligeramente más grande */
+    line-height: 1.8;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+}
+
+p, li, span, code {
+    /* Aseguramos máxima legibilidad en contrastes oscuros */
+    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+}
+
+/* 🚀 Sobrescribir colores de Bootstrap de baja visibilidad */
+.text-secondary {
+    color: var(--text-secondary) !important; /* Blanco slate de alta visibilidad */
+}
+
+.text-muted {
+    color: var(--text-muted) !important; /* Gris slate claro de alta visibilidad */
+}
+
+.glass-card p {
+    color: var(--text-secondary);
+    font-size: 1.25rem; /* Letra de descripción más grande para el proyector */
+    line-height: 1.8;
+}
+
+.lead {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ✨ Efecto de Texto en Degradado */
+.gradient-text {
+    background: linear-gradient(135deg, var(--neon-cyan) 0%, #ffffff 50%, var(--neon-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+}
+
+/* 🧪 Tarjetas con Efecto de Cristal (Glassmorphism) */
+.glass-card {
+    background: var(--bg-surface);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.5);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 242, 254, 0.45);
+    box-shadow: 0 15px 50px 0 rgba(0, 242, 254, 0.25);
+}
+
+/* 📁 Explorador de Directorios Interactivo */
+.explorer-container {
+    min-height: 520px;
+}
+
+.explorer-tree {
+    border-right: 1px solid var(--border-color);
+    padding-right: 1.5rem;
+}
+
+.tree-node {
+    cursor: pointer;
+    padding: 0.8rem 1rem; /* Padding más generoso */
+    border-radius: 10px;
+    margin-bottom: 0.4rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    font-weight: 500;
+}
+
+.tree-node i {
+    width: 26px;
+    font-size: 1.25rem;
+    margin-right: 0.6rem;
+}
+
+.tree-node:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+    padding-left: 1.3rem;
+}
+
+.tree-node.active-folder {
+    background: linear-gradient(90deg, rgba(142, 45, 226, 0.25) 0%, rgba(0, 242, 254, 0.08) 100%);
+    border-left: 4px solid var(--neon-cyan);
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* 🌿 Archivos en el Árbol */
+.file-node {
+    padding-left: 2.2rem !important;
+    font-size: 0.95rem !important;
+}
+
+/* 🧬 Tarjetas Detalladas de Módulos (Grid) */
+.module-badge {
+    background: rgba(0, 242, 254, 0.12);
+    color: var(--neon-cyan);
+    border: 1px solid rgba(0, 242, 254, 0.3);
+    font-size: 0.85rem; /* Más grande */
+    padding: 0.4rem 1.1rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    display: inline-block;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 5px rgba(0, 242, 254, 0.3);
+}
+
+.module-icon {
+    font-size: 2.6rem;
+    margin-bottom: 1.2rem;
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+/* 🔌 Botones Neón */
+.neon-btn {
+    background: transparent;
+    border: 2px solid var(--neon-cyan); /* Borde más grueso */
+    color: var(--neon-cyan);
+    padding: 0.9rem 2.2rem; /* Más grande */
+    border-radius: 50px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.15);
+    font-size: 0.95rem;
+}
+
+.neon-btn:hover {
+    background: var(--neon-cyan);
+    color: var(--bg-dark);
+    box-shadow: 0 0 30px rgba(0, 242, 254, 0.5);
+    transform: translateY(-3px);
+}
+
+.neon-btn-purple {
+    border-color: var(--neon-purple);
+    color: var(--neon-purple);
+    box-shadow: 0 0 15px rgba(142, 45, 226, 0.15);
+}
+
+.neon-btn-purple:hover {
+    background: var(--neon-purple);
+    color: white;
+    box-shadow: 0 0 30px rgba(142, 45, 226, 0.5);
+}
+
+/* 💡 Visor de Código Emulado */
+.code-window {
+    background: #06080e;
+    border-radius: 14px;
+    border: 1px solid var(--border-color);
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+    font-size: 0.92rem; /* Más grande y legible */
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.code-header {
+    background: rgba(255, 255, 255, 0.04);
+    padding: 0.7rem 1.2rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.code-dots span {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.code-dot-red { background-color: #ff5f56; }
+.code-dot-yellow { background-color: #ffbd2e; }
+.code-dot-green { background-color: #27c93f; }
+
+.code-body {
+    padding: 1.5rem;
+    margin: 0;
+    color: #f8fafc;
+    max-height: 400px;
+    overflow-y: auto;
+    line-height: 1.5;
+}
+
+/* 🎬 🎬 MODO PRESENTACIÓN (SLIDE SYSTEM FULLSCREEN) 🎬 🎬 */
+.presentation-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at center, #0e1124 0%, #04050a 100%);
+    z-index: 9999;
+    display: none; /* Se activa vía JS */
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.presentation-active {
+    display: flex !important;
+    overflow: hidden;
+}
+
+.slide-deck {
+    width: 100%;
+    max-width: 1100px;
+    height: 100%;
+    max-height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+.slide-card {
+    background: rgba(18, 22, 45, 0.8);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 2px solid rgba(0, 242, 254, 0.25);
+    border-radius: 24px;
+    padding: 3.5rem;
+    flex-grow: 1;
+    display: none; /* Se maneja dinámicamente */
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 0 50px rgba(0, 242, 254, 0.15);
+    transform: scale(0.95);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+}
+
+.slide-card.active-slide {
+    display: flex;
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Tipografía de las diapositivas */
+.slide-card h2 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.slide-card p {
+    font-size: 1.5rem;
+    color: #e2e8f0;
+    line-height: 1.8;
+}
+
+.slide-card ul {
+    font-size: 1.35rem;
+    color: #f1f5f9;
+    margin-top: 1.5rem;
+    line-height: 2;
+}
+
+.slide-card li i {
+    color: var(--neon-cyan);
+    margin-right: 0.8rem;
+}
+
+/* Navegación de Diapositivas */
+.presentation-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    padding: 0 1rem;
+}
+
+.slide-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slide-btn:hover {
+    background: var(--neon-cyan);
+    color: var(--bg-dark);
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+    border-color: var(--neon-cyan);
+}
+
+.close-presentation-btn {
+    position: absolute;
+    top: -1.5rem;
+    right: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close-presentation-btn:hover {
+    background: var(--neon-pink);
+    border-color: var(--neon-pink);
+    box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
+}
+
+.slide-progress {
+    color: var(--text-secondary);
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* 🎛️ Contenedor de Detalle Dinámico */
+.detail-pane {
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 📱 Personalizaciones Responsive */
+@media (max-width: 991.98px) {
+    .explorer-tree {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding-right: 0;
+        padding-bottom: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .slide-card {
+        padding: 2rem;
+    }
+    .slide-card h2 {
+        font-size: 2.2rem;
+    }
+    .slide-card p {
+        font-size: 1.15rem;
+    }
+}
+
+/* 🖱️ Personalización de Barra de Desplazamiento */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--neon-cyan);
+}
