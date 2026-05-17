@@ -152,6 +152,34 @@ fi`
 *   **Objetivo**: Crear un portal web interactivo responsivo de estética Cyberpunk y Glassmorphism para demostraciones de agentes.
 *   **Pila de Tecnología**: HTML5 semántico, CSS3 personalizado y Vanilla JavaScript ES6 (sin NodeJS en producción).
 *   **Directiva Crítica**: Proyección nítida de alta visibilidad (slate-100/300) y soporte de teclado para diapositivas.`
+    },
+    skills: {
+        title: "Habilidades Autónomas (Skills)",
+        icon: "fa-puzzle-piece",
+        badge: "Superpoderes del Agente",
+        description: "Módulos de capacidades procedimentales escritas en Markdown con YAML frontmatter. Permiten al agente adquirir capacidades específicas de forma modular bajo demanda, optimizando el consumo de tokens y maximizando la interoperabilidad universal.",
+        structure: `├── presentacion-agent/
+│   ├── SKILL.md
+│   └── scripts/
+│       ├── run-presentation.sh
+│       └── render-preview.js`,
+        codeTitle: "skills/presentacion-agent/SKILL.md",
+        codeContent: `---
+name: Presentador de Ecosistema .agent
+description: Visualiza de forma interactiva y premium la estructura y reglas de .agent
+---
+
+# 🎓 Skill de Presentación Autónoma
+
+## 🚀 Capacidades
+1. Generación de portal interactivo cyberpunk local.
+2. Servidor web de visualización de diapositivas incorporado.
+3. Soporte multi-dispositivo y transiciones fluidas.
+
+## 🛠️ Comando de Lanzamiento
+\`\`\`bash
+bash .agent/skills/presentacion-agent/scripts/run-presentation.sh
+\`\`\``
     }
 };
 
@@ -192,11 +220,21 @@ document.addEventListener("DOMContentLoaded", () => {
     // Escuchador de clic en cada nodo del árbol
     treeNodes.forEach(node => {
         node.addEventListener("click", () => {
-            // Remover estado activo de los demás
-            treeNodes.forEach(t => t.classList.remove("active-folder"));
+            // Remover estado activo de los demás y resetear sus iconos
+            treeNodes.forEach(t => {
+                t.classList.remove("active-folder");
+                const icon = t.querySelector("i");
+                if (icon && t.classList.contains("file-node")) {
+                    icon.className = "fa-solid fa-folder text-warning";
+                }
+            });
             
-            // Activar nodo seleccionado
+            // Activar nodo seleccionado y abrir su carpeta
             node.classList.add("active-folder");
+            const activeIcon = node.querySelector("i");
+            if (activeIcon && node.classList.contains("file-node")) {
+                activeIcon.className = "fa-solid fa-folder-open text-warning";
+            }
             
             // Obtener llave del módulo
             const moduleKey = node.getAttribute("data-module");

@@ -175,4 +175,22 @@ Este directorio actúa como una base de conocimiento para los agentes, almacenan
 ```
 .agent/memory/
 ├── project-context.md             # Contexto general del proyecto
-├── tech-
+└── tech-stack.md                  # Pila de tecnología y decisiones de desarrollo
+```
+
+## .agent/skills
+
+Este directorio contiene módulos de habilidades procedimentales autónomas escritas en Markdown con YAML frontmatter. Le otorgan al agente "superpoderes" y flujos específicos bajo demanda, maximizando la interoperabilidad universal.
+
+### Estructura del directorio de habilidades:
+
+```
+.agent/skills/
+└── presentacion-agent/            # Skill de presentación interactiva
+    └── SKILL.md                   # Manifiesto y guía de la skill
+```
+
+### Propósito de las Skills:
+
+- **Modularidad e Interoperabilidad**: Compatibles de forma nativa con Claude Code, Cursor, GPTs y Gemini.
+- **Eficiencia de Tokens (Revelación Progresiva)**: El agente solo lee el contenido de la skill cuando la tarea la activa explícitamente, evitando sobrecargar el contexto del modelo.

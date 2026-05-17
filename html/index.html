@@ -19,7 +19,7 @@
 <body>
 
     <!-- 🪐 Sección Hero (Portada de la Presentación) -->
-    <header class="py-5 text-center position-relative overflow-hidden mb-5">
+    <header class="fullscreen-section text-center position-relative overflow-hidden">
         <div class="container position-relative z-index-3">
             <div class="row justify-content-center">
                 <div class="col-lg-10">
@@ -40,90 +40,101 @@
     </header>
 
     <!-- 📁 Sección del Explorador Interactivo -->
-    <main id="explorer" class="container mb-5 py-3">
-        <div class="row">
-            <div class="col-12 mb-4">
-                <h2 class="text-center gradient-text fs-1 mb-2">Explorador Interactivo .agent</h2>
-                <p class="text-secondary text-center">Haz clic en cada carpeta de la izquierda para ver su rol dentro de la arquitectura de desarrollo autónomo.</p>
-            </div>
-        </div>
-
-        <div class="row g-4 explorer-container">
-            <!-- 🌳 Árbol de Directorios (Izquierda) -->
-            <div class="col-lg-4">
-                <div class="glass-card p-4 h-100">
-                    <h4 class="mb-4 text-white border-bottom pb-2 border-secondary border-opacity-25">
-                        <i class="fa-solid fa-sitemap text-info me-2"></i>Estructura del Proyecto
-                    </h4>
-                    
-                    <div class="explorer-tree">
-                        <!-- Nodo Principal .agent/ -->
-                        <div class="tree-node fw-bold text-white mb-2" style="cursor: default; background: transparent;">
-                            <i class="fa-solid fa-folder-open text-warning"></i>.agent/
-                        </div>
-                        
-                        <!-- Módulos (Hijos) -->
-                        <div class="tree-node active-folder file-node" data-module="templates">
-                            <i class="fa-solid fa-folder text-warning"></i>templates/
-                        </div>
-                        <div class="tree-node file-node" data-module="prompts">
-                            <i class="fa-solid fa-folder text-warning"></i>prompts/
-                        </div>
-                        <div class="tree-node file-node" data-module="rules">
-                            <i class="fa-solid fa-folder text-warning"></i>rules/
-                        </div>
-                        <div class="tree-node file-node" data-module="brainstorming">
-                            <i class="fa-solid fa-folder text-warning"></i>brainstorming/
-                        </div>
-                        <div class="tree-node file-node" data-module="tools">
-                            <i class="fa-solid fa-folder text-warning"></i>tools/
-                        </div>
-                        <div class="tree-node file-node" data-module="logs">
-                            <i class="fa-solid fa-folder text-warning"></i>logs/
-                        </div>
-                        <div class="tree-node file-node" data-module="memory">
-                            <i class="fa-solid fa-folder text-warning"></i>memory/
-                        </div>
-                    </div>
+    <main id="explorer" class="container fullscreen-section flex-column justify-content-center py-3">
+        <div class="w-100">
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <h2 class="text-center gradient-text fs-1 mb-1">Explorador Interactivo .agent</h2>
+                    <p class="text-secondary text-center small mb-3">Haz clic en cada carpeta de la izquierda para ver su rol dentro de la arquitectura de desarrollo autónomo.</p>
                 </div>
             </div>
 
-            <!-- 🧬 Detalles Dinámicos y Código Emulado (Derecha) -->
-            <div class="col-lg-8" id="dynamic-pane">
-                <div class="glass-card p-4 h-100 d-flex flex-column justify-content-between">
-                    <div class="mb-4">
-                        <span class="module-badge" id="module-badge">Garantía de Consistencia</span>
-                        <div class="d-flex align-items-center gap-3 mb-3">
-                            <i class="module-icon fa-solid fa-cubes" id="module-icon"></i>
-                            <h3 class="h2 text-white m-0" id="module-title">Plantillas (Templates)</h3>
+            <div class="row g-4 explorer-container">
+                <!-- 🌳 Árbol de Directorios (Izquierda) -->
+                <div class="col-lg-4">
+                    <div class="glass-card p-4 h-100">
+                        <h4 class="mb-4 text-white border-bottom pb-2 border-secondary border-opacity-25">
+                            <i class="fa-solid fa-sitemap text-info me-2"></i>Estructura del Proyecto
+                        </h4>
+                        
+                        <div class="explorer-tree">
+                            <!-- Nodo Principal .agent/ -->
+                            <div class="tree-node fw-bold text-white mb-2" style="cursor: default; background: transparent;">
+                                <i class="fa-solid fa-folder-open text-warning"></i>.agent/
+                            </div>
+                            
+                            <!-- Módulos (Hijos) -->
+                            <div class="tree-node active-folder file-node" data-module="templates">
+                                <i class="fa-solid fa-folder-open text-warning"></i>templates/
+                            </div>
+                            <div class="tree-node file-node" data-module="prompts">
+                                <i class="fa-solid fa-folder text-warning"></i>prompts/
+                            </div>
+                            <div class="tree-node file-node" data-module="rules">
+                                <i class="fa-solid fa-folder text-warning"></i>rules/
+                            </div>
+                            <div class="tree-node file-node" data-module="brainstorming">
+                                <i class="fa-solid fa-folder text-warning"></i>brainstorming/
+                            </div>
+                            <div class="tree-node file-node" data-module="tools">
+                                <i class="fa-solid fa-folder text-warning"></i>tools/
+                            </div>
+                            <div class="tree-node file-node" data-module="logs">
+                                <i class="fa-solid fa-folder text-warning"></i>logs/
+                            </div>
+                            <div class="tree-node file-node" data-module="memory">
+                                <i class="fa-solid fa-folder text-warning"></i>memory/
+                            </div>
+                            <div class="tree-node file-node" data-module="skills">
+                                <i class="fa-solid fa-folder text-warning"></i>skills/
+                            </div>
                         </div>
-                        <p class="text-secondary fs-6" id="module-desc">
-                            Contiene archivos .tpl que los agentes usan para crear código. Evita que el agente empiece de cero, garantizando consistencia.
-                        </p>
+                    </div>
+                </div>
 
-                        <!-- Estructura de Subcarpetas -->
-                        <div class="my-4">
-                            <h5 class="text-info mb-2 fs-6"><i class="fa-solid fa-folder-tree me-2"></i>Estructura interna:</h5>
-                            <pre class="bg-black bg-opacity-50 p-3 rounded text-secondary border border-secondary border-opacity-10" id="module-structure" style="font-family: monospace; font-size: 0.85rem;">
+                <!-- 🧬 Detalles Dinámicos y Código Emulado (Derecha) -->
+                <div class="col-lg-8" id="dynamic-pane">
+                    <div class="glass-card p-4 h-100 d-flex flex-column">
+                        <h4 class="mb-4 text-white border-bottom pb-2 border-secondary border-opacity-25">
+                            <i class="fa-solid fa-circle-info text-info me-2"></i>Detalles del Componente
+                        </h4>
+                        
+                        <div class="dynamic-scroll-content">
+                            <div class="mb-4">
+                                <span class="module-badge" id="module-badge">Garantía de Consistencia</span>
+                                <div class="d-flex align-items-center gap-3 mb-3">
+                                    <i class="module-icon fa-solid fa-cubes" id="module-icon"></i>
+                                    <h3 class="h2 text-white m-0" id="module-title">Plantillas (Templates)</h3>
+                                </div>
+                                <p class="text-secondary fs-6" id="module-desc">
+                                    Contiene archivos .tpl que los agentes usan para crear código. Evita que el agente empiece de cero, garantizando consistencia.
+                                </p>
+
+                                <!-- Estructura de Subcarpetas -->
+                                <div class="my-4">
+                                    <h5 class="text-info mb-2 fs-6"><i class="fa-solid fa-folder-tree me-2"></i>Estructura interna:</h5>
+                                    <pre class="bg-black bg-opacity-50 p-3 rounded text-secondary border border-secondary border-opacity-10" id="module-structure" style="font-family: monospace; font-size: 0.85rem;">
 ├── component/
 │   ├── COMPONENT.tsx.tpl
 │   └── COMPONENT.css.tpl
-                            </pre>
-                        </div>
-                    </div>
-
-                    <!-- Editor de Código Emulado -->
-                    <div class="code-window">
-                        <div class="code-header">
-                            <div class="code-dots">
-                                <span class="code-dot-red"></span>
-                                <span class="code-dot-yellow"></span>
-                                <span class="code-dot-green"></span>
+                                    </pre>
+                                </div>
                             </div>
-                            <span class="text-muted small" id="code-title">component/COMPONENT.tsx.tpl</span>
-                            <span class="text-muted small"><i class="fa-regular fa-copy"></i> Muestra</span>
+
+                            <!-- Editor de Código Emulado -->
+                            <div class="code-window">
+                                <div class="code-header">
+                                    <div class="code-dots">
+                                        <span class="code-dot-red"></span>
+                                        <span class="code-dot-yellow"></span>
+                                        <span class="code-dot-green"></span>
+                                    </div>
+                                    <span class="text-muted small" id="code-title">component/COMPONENT.tsx.tpl</span>
+                                    <span class="text-muted small"><i class="fa-regular fa-copy"></i> Muestra</span>
+                                </div>
+                                <pre class="code-body"><code id="code-content">// Código de la plantilla aquí...</code></pre>
+                            </div>
                         </div>
-                        <pre class="code-body"><code id="code-content">// Código de la plantilla aquí...</code></pre>
                     </div>
                 </div>
             </div>
@@ -131,59 +142,62 @@
     </main>
 
     <!-- 🎓 Sección Educativa sobre Skills -->
-    <section id="skills-education" class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="glass-card p-5">
-                    <div class="text-center mb-5">
-                        <span class="module-badge"><i class="fa-solid fa-puzzle-piece me-2"></i>Entendimiento Profundo</span>
-                        <h2 class="display-5 text-white fw-bold mt-2">¿Cómo encajan las Skills de IA aquí?</h2>
-                        <p class="text-secondary lead">Las habilidades modulares son la clave para que cualquier agente (Claude, GPT, Gemini) ejecute el ecosistema .agent de forma inteligente.</p>
-                    </div>
-
-                    <div class="row g-4">
-                        <!-- Tarjeta 1: Revelación Progresiva -->
-                        <div class="col-md-4 text-center">
-                            <div class="p-3">
-                                <div class="mb-3 text-info fs-2">
-                                    <i class="fa-solid fa-eye-low-vision"></i>
-                                </div>
-                                <h4 class="text-white h5 mb-2">Revelación Progresiva</h4>
-                                <p class="text-secondary small">El agente no lee todas las carpetas a la vez. Lee las descripciones y solo activa el código cuando la tarea lo requiere, ahorrando tokens.</p>
-                            </div>
+    <section id="skills-education" class="container fullscreen-section flex-column justify-content-between py-4">
+        <!-- Espaciador para centrar verticalmente -->
+        <div class="flex-grow-1 d-flex align-items-center justify-content-center w-100">
+            <div class="row justify-content-center w-100">
+                <div class="col-lg-10">
+                    <div class="glass-card p-5">
+                        <div class="text-center mb-5">
+                            <span class="module-badge"><i class="fa-solid fa-puzzle-piece me-2"></i>Entendimiento Profundo</span>
+                            <h2 class="display-5 text-white fw-bold mt-2">¿Cómo encajan las Skills de IA aquí?</h2>
+                            <p class="text-secondary lead">Las habilidades modulares son la clave para que cualquier agente (Claude, GPT, Gemini) ejecute el ecosistema .agent de forma inteligente.</p>
                         </div>
 
-                        <!-- Tarjeta 2: Interoperabilidad -->
-                        <div class="col-md-4 text-center">
-                            <div class="p-3">
-                                <div class="mb-3 text-warning fs-2">
-                                    <i class="fa-solid fa-shuffle"></i>
+                        <div class="row g-4">
+                            <!-- Tarjeta 1: Revelación Progresiva -->
+                            <div class="col-md-4 text-center">
+                                <div class="p-3">
+                                    <div class="mb-3 text-info fs-2">
+                                        <i class="fa-solid fa-eye-low-vision"></i>
+                                    </div>
+                                    <h4 class="text-white h5 mb-2">Revelación Progresiva</h4>
+                                    <p class="text-secondary small">El agente no lee todas las carpetas a la vez. Lee las descripciones y solo activa el código cuando la tarea lo requiere, ahorrando tokens.</p>
                                 </div>
-                                <h4 class="text-white h5 mb-2">Interoperabilidad</h4>
-                                <p class="text-secondary small">Utilizando la estructura estándar `.agent/skills/`, tu configuración es compatible y portátil tanto para Claude Code, GPTs, Gemini y editores como Cursor.</p>
                             </div>
-                        </div>
 
-                        <!-- Tarjeta 3: Autonomía Controlada -->
-                        <div class="col-md-4 text-center">
-                            <div class="p-3">
-                                <div class="mb-3 text-danger fs-2">
-                                    <i class="fa-solid fa-sliders"></i>
+                            <!-- Tarjeta 2: Interoperabilidad -->
+                            <div class="col-md-4 text-center">
+                                <div class="p-3">
+                                    <div class="mb-3 text-warning fs-2">
+                                        <i class="fa-solid fa-shuffle"></i>
+                                    </div>
+                                    <h4 class="text-white h5 mb-2">Interoperabilidad</h4>
+                                    <p class="text-secondary small">Utilizando la estructura estándar `.agent/skills/`, tu configuración es compatible y portátil tanto para Claude Code, GPTs, Gemini y editores como Cursor.</p>
                                 </div>
-                                <h4 class="text-white h5 mb-2">Autonomía Controlada</h4>
-                                <p class="text-secondary small">Tus archivos de reglas (`rules/`) y herramientas (`tools/`) delimitan el comportamiento del agente, asegurando calidad en cada compilación.</p>
+                            </div>
+
+                            <!-- Tarjeta 3: Autonomía Controlada -->
+                            <div class="col-md-4 text-center">
+                                <div class="p-3">
+                                    <div class="mb-3 text-danger fs-2">
+                                        <i class="fa-solid fa-sliders"></i>
+                                    </div>
+                                    <h4 class="text-white h5 mb-2">Autonomía Controlada</h4>
+                                    <p class="text-secondary small">Tus archivos de reglas (`rules/`) y herramientas (`tools/`) delimitan el comportamiento del agente, asegurando calidad en cada compilación.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- 🌌 Footer -->
-    <footer class="text-center py-4 border-top border-secondary border-opacity-10 mt-5">
-        <p class="text-muted small m-0">&copy; 2026 Ecosistema .agent & AI Skills. Creado con arquitectura de desarrollo autónomo.</p>
-    </footer>
+        <!-- 🌌 Footer al final de la última diapositiva -->
+        <footer class="text-center py-3 w-100 border-top border-secondary border-opacity-10 mt-3">
+            <p class="text-muted small m-0">&copy; 2026 Ecosistema .agent & AI Skills. Creado con arquitectura de desarrollo autónomo.</p>
+        </footer>
+    </section>
 
     <!-- 🎬 Modal del Modo Presentación (Slides en Pantalla Completa) -->
     <div id="presentation-overlay" class="presentation-overlay">

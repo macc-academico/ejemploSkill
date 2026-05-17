@@ -25,6 +25,122 @@
     --font-body: 'Space Grotesk', sans-serif;
 }
 
+/* 🌀 Control de Desplazamiento y Scroll Snapping (Solo en Escritorio / Laptops) */
+@media (min-width: 992px) {
+    html {
+        scroll-behavior: smooth;
+        scroll-snap-type: y mandatory;
+        overflow-y: scroll;
+        height: 100%;
+    }
+
+    .fullscreen-section {
+        min-height: 100vh;
+        height: 100vh; /* Pantalla completa exacta */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        position: relative;
+        box-sizing: border-box;
+        padding: 3rem 1rem;
+        overflow: hidden;
+    }
+
+    /* 📁 El Explorador (Sección 2) se mantiene estrictamente fijo en pantalla completa */
+    #explorer.fullscreen-section {
+        overflow: hidden !important;
+    }
+
+    /* 🖥️ Ajustes de Proporciones y Alturas en Pantallas Grandes para la Sección 2 */
+    #explorer .explorer-container {
+        height: 75vh;
+        min-height: 640px;
+    }
+
+    #explorer .explorer-container .glass-card {
+        height: 100% !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    /* 🌀 Scroll inteligente y sutil solo para el bloque de contenidos internos del panel derecho */
+    #explorer .dynamic-scroll-content {
+        max-height: calc(75vh - 120px) !important;
+        overflow-y: auto !important;
+        padding-right: 0.5rem;
+    }
+
+    #explorer .explorer-tree {
+        flex-grow: 1;
+        padding-right: 1rem;
+    }
+
+    #explorer #dynamic-pane .glass-card > div:first-child {
+        flex-shrink: 0;
+    }
+
+    #explorer #dynamic-pane .code-window {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        margin-top: 1rem;
+    }
+
+    #explorer #dynamic-pane .code-body {
+        flex-grow: 1;
+        overflow-y: auto;
+        max-height: calc(62vh - 350px) !important;
+    }
+}
+
+/* 📱 Comportamiento Fluido e Ilimitado en Móviles y Tablets */
+@media (max-width: 991.98px) {
+    html {
+        scroll-snap-type: none !important; /* Desactivar snapping */
+        height: auto;
+    }
+
+    .fullscreen-section {
+        min-height: auto !important;
+        height: auto !important; /* Altura natural basada en el contenido */
+        display: block !important; /* Desactivar flexbox rígido */
+        padding: 3rem 1rem;
+        scroll-snap-align: none !important;
+    }
+
+    /* 📁 Adaptaciones Específicas del Explorador (Sección 2) para Celulares y Tablets */
+    #explorer .explorer-container {
+        min-height: auto;
+    }
+
+    #explorer .explorer-container .glass-card {
+        height: auto !important;
+        min-height: auto !important;
+        margin-bottom: 1.5rem;
+    }
+
+    #explorer .explorer-tree {
+        border-right: none !important;
+        border-bottom: 1px solid var(--border-color);
+        padding-right: 0 !important;
+        padding-bottom: 1.5rem;
+    }
+
+    #explorer #dynamic-pane .code-body {
+        max-height: 350px !important; /* Mantiene el visor de código con scroll interno compacto */
+    }
+
+    /* Fluidez total para que en móvil crezca de forma natural sin scroll de envoltura */
+    #explorer .dynamic-scroll-content {
+        height: auto !important;
+        overflow: visible !important;
+    }
+}
+
 /* 🪐 Configuración General y Fondos */
 body {
     background-color: var(--bg-dark);
@@ -123,44 +239,97 @@ p, li, span, code {
 .explorer-tree {
     border-right: 1px solid var(--border-color);
     padding-right: 1.5rem;
+    position: relative;
+}
+
+/* Línea de guía vertical jerárquica (VS Code Style) */
+.explorer-tree::before {
+    content: '';
+    position: absolute;
+    top: 36px;
+    left: 21px;
+    bottom: 22px;
+    width: 2px;
+    background: rgba(0, 242, 254, 0.15); /* Guía brillante */
+    border-radius: 4px;
 }
 
 .tree-node {
     cursor: pointer;
-    padding: 0.8rem 1rem; /* Padding más generoso */
-    border-radius: 10px;
-    margin-bottom: 0.4rem;
-    transition: all 0.2s ease;
+    padding: 0.65rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.35rem;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
     color: var(--text-secondary);
-    font-size: 1.05rem;
+    font-size: 1rem;
     font-weight: 500;
+    position: relative;
+    border: 1px solid transparent;
 }
 
 .tree-node i {
-    width: 26px;
-    font-size: 1.25rem;
+    width: 20px;
+    font-size: 1.15rem;
     margin-right: 0.6rem;
+    transition: all 0.25s ease;
+}
+
+.tree-node.file-node {
+    margin-left: 1.8rem; /* Desplazamiento jerárquico claro */
+}
+
+/* Conectores horizontales sutiles para cada carpeta */
+.tree-node.file-node::before {
+    content: '';
+    position: absolute;
+    left: -16px;
+    top: 50%;
+    width: 12px;
+    height: 2px;
+    background: rgba(0, 242, 254, 0.15);
 }
 
 .tree-node:hover {
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--text-primary);
-    padding-left: 1.3rem;
+    background: rgba(255, 255, 255, 0.04);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.05);
 }
 
+.tree-node:hover i {
+    transform: scale(1.15);
+    color: var(--neon-cyan);
+}
+
+/* Estado Activo: Cápsula Cyberpunk Vibrante */
 .tree-node.active-folder {
-    background: linear-gradient(90deg, rgba(142, 45, 226, 0.25) 0%, rgba(0, 242, 254, 0.08) 100%);
-    border-left: 4px solid var(--neon-cyan);
-    color: var(--text-primary);
+    background: rgba(0, 242, 254, 0.08) !important;
+    color: #ffffff !important;
+    border-color: rgba(0, 242, 254, 0.3) !important;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.15);
     font-weight: 600;
 }
 
-/* 🌿 Archivos en el Árbol */
-.file-node {
-    padding-left: 2.2rem !important;
-    font-size: 0.95rem !important;
+.tree-node.active-folder i {
+    color: var(--neon-cyan) !important;
+    text-shadow: 0 0 8px rgba(0, 242, 254, 0.6);
+}
+
+/* Flecha indicadora a la derecha cuando está activa */
+.tree-node.active-folder::after {
+    content: '➔';
+    position: absolute;
+    right: 12px;
+    font-size: 0.8rem;
+    color: var(--neon-cyan);
+    opacity: 0.8;
+    animation: slideArrow 1.5s infinite alternate;
+}
+
+@keyframes slideArrow {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(4px); }
 }
 
 /* 🧬 Tarjetas Detalladas de Módulos (Grid) */
