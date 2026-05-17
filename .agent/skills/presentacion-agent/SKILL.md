@@ -8,7 +8,7 @@ description: "Visualiza de forma interactiva y premium la estructura, reglas y u
 Esta habilidad permite al agente diseñar, reestructurar o extender la interfaz web interactiva que representa el estándar de directorios `.agent`.
 
 ## 📋 Requisitos de la Interfaz
-1. **Estructura Organizada**: HTML en la raíz, estilos CSS personalizados dentro de `css/`, y JavaScript interactivo en `js/`.
+1. **Estructura Organizada**: HTML, estilos CSS y JavaScript interactivo organizados de forma aislada dentro de la carpeta `html/` (con `html/index.html`, `html/css/styles.css` y `html/js/app.js`).
 2. **Estilo Premium**: Estética moderna tipo Cyberpunk/Glassmorphism con fondo oscuro (`dark mode`), tipografía futurista (Google Fonts), bordes con gradientes luminosos y sombras de neon.
 3. **Interactividad**:
     - Árbol de directorios navegable (Folder Explorer) donde al hacer clic en una carpeta se muestre su propósito y archivos asociados.

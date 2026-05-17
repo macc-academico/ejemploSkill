@@ -1,0 +1,26 @@
+# Docker
+.Dockerignore
+Dockerfile
+docker-compose*.yml
+docker-compose*.yaml
+
+# Git
+.git
+.gitignore
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store
+
+# Documentation & Assets
+readme*.md
+*.png
+*.jpg
+*.jpeg
+.skills/
+
+# Misc
+jenkins_tutorial_ci/
+node_modules/
+npm-debug.log*

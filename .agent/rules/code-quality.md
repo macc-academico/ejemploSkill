@@ -14,9 +14,9 @@ Este documento define el estándar de calidad de código y las reglas de interac
 ## 📂 Organización y Estructura del Proyecto
 
 1.  **Separación Estricta de Responsabilidades**:
-    *   **HTML**: La estructura principal debe residir en archivos `.html` limpios en la raíz del proyecto. Queda prohibido el uso de estilos inline (`style="..."`) y scripts inline (`<script>...</script>`).
-    *   **CSS**: Todo el estilo visual debe ubicarse en archivos `.css` organizados dentro del directorio `css/`.
-    *   **JavaScript**: Toda la lógica de comportamiento e interactividad debe ubicarse en archivos `.js` dentro del directorio `js/`.
+    *   **HTML**: La estructura principal debe residir en la carpeta `html/` (ej: `html/index.html`). Queda prohibido el uso de estilos inline (`style="..."`) y scripts inline (`<script>...</script>`).
+    *   **CSS**: Todo el estilo visual debe ubicarse en archivos `.css` organizados dentro del subdirectorio `html/css/`.
+    *   **JavaScript**: Toda la lógica de comportamiento e interactividad debe ubicarse en archivos `.js` dentro del subdirectorio `html/js/`.
 2.  **Uso Obligatorio de Plantillas**:
     *   Antes de crear un nuevo componente o página, el agente debe consultar el directorio [.agent/templates/](file:///Users/macc/workspace/ejemploSkill/.agent/templates/) y utilizar la estructura base de `COMPONENT.html.tpl`, `COMPONENT.css.tpl` y `COMPONENT.js.tpl` para asegurar consistencia en el diseño y comportamiento.
 

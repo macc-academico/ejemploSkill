@@ -20,9 +20,9 @@ Este documento es la directiva primaria de comportamiento, rol e interacción pa
 
 ## 🔄 3. Directiva de Sincronización Total (MANDATORIA)
 
-*   **Sincronización de Estilos y Estructura**: Si realizas modificaciones en las hojas de estilo CSS (`css/styles.css`), maquetación HTML (`index.html`) o plantillas base (`.tpl`), estás **obligado** a replicar y sincronizar estos cambios en:
+*   **Sincronización de Estilos y Estructura**: Si realizas modificaciones en las hojas de estilo CSS (`html/css/styles.css`), maquetación HTML (`html/index.html`) o plantillas base (`.tpl`), estás **obligado** a replicar y sincronizar estos cambios en:
     1.  El archivo de manifiesto de la Skill afectada ([.agent/skills/presentacion-agent/SKILL.md](file:///Users/macc/workspace/ejemploSkill/.agent/skills/presentacion-agent/SKILL.md)).
-    2.  La base de datos de simulación interactiva ubicada dentro de [js/app.js](file:///Users/macc/workspace/ejemploSkill/js/app.js).
+    2.  La base de datos de simulación interactiva ubicada dentro de [html/js/app.js](file:///Users/macc/workspace/ejemploSkill/html/js/app.js).
     *Esto previene discrepancias entre el estado real del repositorio y el visualizador dinámico web de presentación.*
 
 ---

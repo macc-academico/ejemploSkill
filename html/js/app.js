@@ -59,7 +59,7 @@ const agentData = {
 ## 🔄 DIRECTIVA DE SINCRONIZACIÓN TOTAL (MANDATORIA)
 * **Sincronización Obligatoria**: Si modificas CSS base, maquetación HTML o plantillas, debes sincronizar los cambios en:
   1. Manifiesto de la Skill (SKILL.md)
-  2. Base de datos interactiva de la portada (js/app.js)
+  2. Base de datos interactiva de la portada (html/js/app.js)
 
 ## 🎨 DISEÑO Y CONSISTENCIA
 * Consultar siempre '.agent/templates/' antes de crear archivos.`
@@ -81,7 +81,7 @@ const agentData = {
 1. **Consentimiento Obligatorio**: El agente de IA **NUNCA** debe realizar modificaciones, creación o eliminación de código en los archivos del disco sin antes explicar el plan y obtener una **confirmación explícita (un "OK")** en el chat.
 
 ## 📂 Organización del Proyecto
-*   **Separación Estricta**: HTML en la raíz, CSS en 'css/' y JS en 'js/'.
+*   **Separación Estricta**: HTML, CSS y JS organizados dentro del directorio 'html/'.
 *   **Consistencia**: Consultar siempre '.agent/templates/' antes de escribir nuevos archivos.`
     },
     brainstorming: {
