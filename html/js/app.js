@@ -104,26 +104,22 @@ const agentData = {
         title: "Herramientas de Ejecución",
         icon: "fa-wrench",
         badge: "Automatización Local",
-        description: "Scripts locales de shell (.sh) o JavaScript que los agentes ejecutan directamente para validar, formatear, probar y desplegar el código. Da autonomía controlada al agente bajo las herramientas y comandos definidos por el equipo humano.",
-        structure: `├── build-project.sh
-├── run-tests.sh
-├── lint-code.sh
-├── deploy-to-staging.sh
-├── check-coverage.sh
-└── execute-custom-script.js`,
-        codeTitle: "tools/run-tests.sh",
+        description: "Scripts locales de shell (.sh) que automatizan y controlan el ciclo de vida del contenedor Docker del portal, dividiendo limpiamente las tareas en entorno de pruebas local, publicación en la nube y despliegue explicativo en el VPS.",
+        structure: `├── run-local.sh
+├── publish-hub.sh
+└── deploy-vps.sh`,
+        codeTitle: "tools/publish-hub.sh",
         codeContent: `#!/bin/bash
-# 🧪 Ejecución controlada de la suite de pruebas unitarias y de cobertura
+# 🚀 Compila la imagen oficial linux/amd64 y la sube a Docker Hub.
 
-echo "Iniciando pruebas con Jest..."
-npm run test -- --coverage --watchAll=false
+echo -e "\\033[0;32m[NUBE] Iniciando compilación de imagen de producción y subida a Docker Hub...\\033[0m"
+docker buildx build --platform linux/amd64 -t macc180794/agent-example-skill:latest --push .
 
 if [ $? -eq 0 ]; then
-  echo "✅ ¡Todas las pruebas han pasado exitosamente!"
-  exit 0
+    echo -e "\\033[0;32m[ÉXITO] ¡Imagen publicada con éxito en Docker Hub! tag: macc180794/agent-example-skill:latest\\033[0m"
 else
-  echo "❌ Se encontraron fallos en las pruebas."
-  exit 1
+    echo "❌ Error al compilar o publicar."
+    exit 1
 fi`
     },
     logs: {
