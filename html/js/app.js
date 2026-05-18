@@ -319,4 +319,30 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     });
+
+    // 🧭 Indicador Activo de Navegación Flotante al hacer Scroll
+    const navItems = document.querySelectorAll(".nav-item");
+    const sections = [
+        document.getElementById("hero"),
+        document.getElementById("explorer"),
+        document.getElementById("skills-education")
+    ];
+
+    window.addEventListener("scroll", () => {
+        let currentSectionId = "hero";
+        const scrollPosition = window.scrollY + window.innerHeight / 3;
+
+        sections.forEach(section => {
+            if (section && scrollPosition >= section.offsetTop) {
+                currentSectionId = section.getAttribute("id");
+            }
+        });
+
+        navItems.forEach(item => {
+            item.classList.remove("active-nav");
+            if (item.getAttribute("href") === `#${currentSectionId}`) {
+                item.classList.add("active-nav");
+            }
+        });
+    });
 });

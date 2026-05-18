@@ -546,23 +546,28 @@ p, li, span, code {
 
 .close-presentation-btn {
     position: absolute;
-    top: -1.5rem;
-    right: 1.5rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255,255,255,0.1);
+    top: 2rem;
+    right: 2rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     color: white;
-    padding: 0.5rem 1.2rem;
+    padding: 0.6rem 1.4rem;
     border-radius: 50px;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 10005;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .close-presentation-btn:hover {
     background: var(--neon-pink);
     border-color: var(--neon-pink);
-    box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(255, 0, 127, 0.5);
 }
 
 .slide-progress {
@@ -622,4 +627,174 @@ p, li, span, code {
 }
 ::-webkit-scrollbar-thumb:hover {
     background: var(--neon-cyan);
+}
+
+/* 🖼️ Galería Premium en Diapositivas del Modo Charla */
+.gallery-card {
+    border-radius: 20px;
+    background: rgba(5, 7, 15, 0.8) !important;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Contenedor del Plano 1 (Brillo Cyan) */
+.gallery-card.cyan-glow {
+    border: 1px solid rgba(0, 242, 254, 0.35) !important;
+}
+.gallery-card.cyan-glow:hover {
+    transform: scale(1.015);
+    border-color: rgba(0, 242, 254, 0.8) !important;
+    box-shadow: 0 0 25px rgba(0, 242, 254, 0.2);
+}
+
+/* Contenedor del Plano 2 (Brillo Púrpura) */
+.gallery-card.purple-glow {
+    border: 1px solid rgba(142, 45, 226, 0.35) !important;
+}
+.gallery-card.purple-glow:hover {
+    transform: scale(1.015);
+    border-color: rgba(142, 45, 226, 0.8) !important;
+    box-shadow: 0 0 25px rgba(142, 45, 226, 0.2);
+}
+
+/* Marco oscurecido y centrado de la Imagen */
+.gallery-img-frame {
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-img-frame img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+/* 🧭 BARRA DE NAVEGACIÓN FLOTANTE Y GLASSMORPHIC */
+html {
+    scroll-behavior: smooth;
+}
+
+.floating-navbar {
+    position: fixed;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 90%;
+    max-width: 800px;
+    background: rgba(10, 13, 30, 0.7);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 100px;
+    padding: 0.6rem 2rem;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.nav-brand {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.3rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.nav-item {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    border: 1px solid transparent;
+}
+
+.nav-item i {
+    transition: transform 0.3s;
+}
+
+.nav-item:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.nav-item:hover i {
+    transform: scale(1.15);
+}
+
+.nav-item.active-nav {
+    color: var(--bg-dark) !important;
+    background: var(--neon-cyan);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+    font-weight: 700;
+}
+
+.nav-item.active-nav i {
+    color: var(--bg-dark);
+}
+
+/* Adaptación responsiva para móviles */
+@media (max-width: 768px) {
+    .floating-navbar {
+        top: 1rem;
+        padding: 0.5rem 1rem;
+    }
+    .nav-brand {
+        display: none; /* Oculta logo en pantallas chicas para dar más espacio a los botones */
+    }
+    .nav-container {
+        justify-content: center;
+    }
+    .nav-links {
+        width: 100%;
+        justify-content: space-around;
+    }
+    .nav-item {
+        padding: 0.4rem 0.9rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* 🏷️ Títulos de Tarjetas de Características (Standout) */
+.feature-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.75rem;
+    display: inline-block;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.col-md-4:hover .feature-title {
+    color: var(--neon-cyan) !important;
+    text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
 }
