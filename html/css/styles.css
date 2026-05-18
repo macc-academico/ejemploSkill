@@ -108,7 +108,8 @@
         min-height: auto !important;
         height: auto !important; /* Altura natural basada en el contenido */
         display: block !important; /* Desactivar flexbox rígido */
-        padding: 3rem 1rem;
+        padding: 6.5rem 1rem 3.5rem 1rem !important; /* Aumentado para evitar que el header flotante tape el contenido */
+        scroll-margin-top: 5.5rem; /* Permite que el scroll por anclas de navegación se alinee perfectamente */
         scroll-snap-align: none !important;
     }
 
@@ -604,12 +605,62 @@ p, li, span, code {
     }
     .slide-card {
         padding: 2rem;
+        overflow-y: auto !important; /* Permitir scroll si el contenido es alto en pantallas chicas */
     }
     .slide-card h2 {
         font-size: 2.2rem;
     }
     .slide-card p {
         font-size: 1.15rem;
+    }
+    /* Reducir altura del frame de imagen para evitar desbordes */
+    .gallery-img-frame {
+        height: 220px !important;
+    }
+    /* Convertir botón cerrar en un círculo minimalista premium en móviles */
+    .close-presentation-btn {
+        top: 1rem !important;
+        right: 1rem !important;
+        padding: 0 !important;
+        width: 44px !important;
+        height: 44px !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    /* Controles de diapositivas adaptados */
+    .slide-btn {
+        width: 48px !important;
+        height: 48px !important;
+        font-size: 1.2rem !important;
+    }
+    .presentation-controls {
+        margin-top: 1rem !important;
+    }
+}
+
+/* 📱 Ajustes ultra-compactos para móviles pequeños */
+@media (max-width: 576px) {
+    .slide-card {
+        padding: 1.2rem !important;
+    }
+    .slide-card h2 {
+        font-size: 1.8rem !important;
+    }
+    .gallery-img-frame {
+        height: 160px !important;
+    }
+    .presentation-overlay {
+        padding: 0.8rem !important;
+    }
+    .slide-btn {
+        width: 44px !important;
+        height: 44px !important;
+        font-size: 1.1rem !important;
+    }
+    .presentation-controls {
+        margin-top: 0.8rem !important;
     }
 }
 
@@ -797,4 +848,117 @@ html {
 .col-md-4:hover .feature-title {
     color: var(--neon-cyan) !important;
     text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+}
+
+/* 🛣️ Estilos de la Sección de Flujo (Workflow) */
+.workflow-card {
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    backdrop-filter: blur(10px);
+}
+.workflow-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.04) !important;
+    border-color: rgba(0, 242, 254, 0.25) !important;
+    box-shadow: 0 10px 30px rgba(0, 242, 254, 0.08);
+}
+.step-badge-top {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-dark);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    transition: all 0.3s;
+}
+.workflow-card:hover .step-badge-top {
+    border-color: var(--neon-cyan);
+    color: var(--neon-cyan);
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+}
+
+/* Conectores visuales para pantallas grandes (Timeline style) */
+@media (min-width: 992px) {
+    .workflow-step {
+        position: relative;
+    }
+    .workflow-step:not(:last-child)::after {
+        content: '➔';
+        position: absolute;
+        right: -12px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+        color: rgba(0, 242, 254, 0.3);
+        pointer-events: none;
+        z-index: 10;
+        animation: pulseConnector 2s infinite alternate;
+    }
+}
+
+@keyframes pulseConnector {
+    0% { opacity: 0.3; transform: translate(-2px, -50%); }
+    100% { opacity: 0.8; transform: translate(2px, -50%); }
+}
+
+@media (max-width: 991.98px) {
+    .workflow-steps-container {
+        padding-top: 1.5rem;
+    }
+    .workflow-step {
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* 🏷️ Workflow Badges para máxima visibilidad */
+.workflow-badge {
+    display: inline-block;
+    padding: 0.35rem 1.1rem;
+    border-radius: 50px;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.85rem;
+    border: 1px solid transparent;
+}
+
+.workflow-badge.badge-cyan {
+    background: rgba(0, 242, 254, 0.12) !important;
+    color: #00f2fe !important;
+    border-color: rgba(0, 242, 254, 0.35) !important;
+    text-shadow: 0 0 5px rgba(0, 242, 254, 0.4);
+}
+
+.workflow-badge.badge-yellow {
+    background: rgba(255, 189, 46, 0.12) !important;
+    color: #ffbd2e !important;
+    border-color: rgba(255, 189, 46, 0.35) !important;
+    text-shadow: 0 0 5px rgba(255, 189, 46, 0.4);
+}
+
+.workflow-badge.badge-red {
+    background: rgba(255, 0, 127, 0.12) !important;
+    color: #ff007f !important;
+    border-color: rgba(255, 0, 127, 0.35) !important;
+    text-shadow: 0 0 5px rgba(255, 0, 127, 0.4);
+}
+
+.workflow-badge.badge-green {
+    background: rgba(57, 255, 20, 0.12) !important;
+    color: #39ff14 !important;
+    border-color: rgba(57, 255, 20, 0.35) !important;
+    text-shadow: 0 0 5px rgba(57, 255, 20, 0.4);
 }

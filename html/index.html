@@ -26,10 +26,11 @@
     <nav class="floating-navbar animate-fadeIn">
         <div class="nav-container">
             <div class="nav-links">
-                <a href="#hero" class="nav-item active-nav"><i class="fa-solid fa-house me-2"></i>Sección 1</a>
-                <a href="#explorer" class="nav-item"><i class="fa-solid fa-folder-open me-2"></i>Sección 2</a>
-                <a href="#skills-education" class="nav-item"><i class="fa-solid fa-graduation-cap me-2"></i>Sección
+                <a href="#hero" class="nav-item active-nav"><i class="fa-solid fa-house me-md-2"></i>Sección 1</a>
+                <a href="#explorer" class="nav-item"><i class="fa-solid fa-folder-open me-md-2"></i>Sección 2</a>
+                <a href="#skills-education" class="nav-item"><i class="fa-solid fa-graduation-cap me-md-2"></i>Sección
                     3</a>
+                <a href="#agent-workflow" class="nav-item"><i class="fa-solid fa-route me-md-2"></i>Sección 4</a>
             </div>
         </div>
     </nav>
@@ -45,8 +46,9 @@
                         <span class="gradient-text">Agentes de IA y Skills</span>
                     </h1>
                     <p class="lead text-secondary fs-4 mx-auto mb-4" style="max-width: 750px;">
-                        Descubre cómo las <strong>Skills de IA</strong> y la arquitectura de plantillas estandarizan la
-                        codificación autónoma.
+                        Una skill es una capacidad adicional que le damos a la IA para que pueda hacer una tarea
+                        específica. Es como darle <strong>manos</strong> al cerebro de la IA para que pueda actuar, no
+                        solo hablar.
                     </p>
                     <div class="d-flex justify-content-center flex-wrap gap-3">
                         <button id="btn-start-presentation" class="btn neon-btn"><i
@@ -59,7 +61,7 @@
     </header>
 
     <!-- 📁 Sección del Explorador Interactivo -->
-    <main id="explorer" class="container fullscreen-section flex-column justify-content-center py-3">
+    <main id="explorer" class="container fullscreen-section flex-column justify-content-center">
         <div class="w-100">
             <div class="row">
                 <div class="col-12 mb-3">
@@ -167,7 +169,7 @@
     </main>
 
     <!-- 🎓 Sección Educativa sobre Skills -->
-    <section id="skills-education" class="container fullscreen-section flex-column justify-content-between py-4">
+    <section id="skills-education" class="container fullscreen-section flex-column justify-content-between">
         <!-- Espaciador para centrar verticalmente -->
         <div class="flex-grow-1 d-flex align-items-center justify-content-center w-100">
             <div class="row justify-content-center w-100">
@@ -226,17 +228,100 @@
             </div>
         </div>
 
-        <!-- 🌌 Footer al final de la última diapositiva -->
-        <footer class="text-center py-3 w-100 border-top border-secondary border-opacity-10 mt-3">
-            <p class="text-muted small m-0">&copy; 2026 Ecosistema .agent & AI Skills. Creado con arquitectura de
+    </section>
+
+    <!-- 🛣️ Sección 4: Diagrama de Flujo del Agente con Skills -->
+    <section id="agent-workflow" class="container fullscreen-section flex-column justify-content-center">
+        <div class="row justify-content-center w-100 my-auto">
+            <div class="col-lg-11 col-xl-10">
+                <div class="glass-card p-5">
+                    <div class="text-center mb-5">
+                        <span class="module-badge"><i class="fa-solid fa-route me-2"></i>Operación Inteligente</span>
+                        <h2 class="display-5 text-white fw-bold mt-2">¿Cómo trabaja un Agente con Skills?</h2>
+                        <p class="text-secondary lead fs-5">El agente de IA sigue un proceso estructurado para entender
+                            la solicitud del usuario, seleccionar la skill apropiada y ejecutar la acción
+                            correspondiente.</p>
+                    </div>
+
+                    <div class="row g-4 workflow-steps-container position-relative">
+                        <!-- Step 1: Entrada -->
+                        <div class="col-lg-3 col-md-6 workflow-step">
+                            <div
+                                class="workflow-card h-100 p-4 rounded-4 border border-secondary border-opacity-10 bg-black bg-opacity-30 position-relative text-center">
+                                <div class="step-badge-top">1</div>
+                                <div class="mb-3 text-info fs-1">
+                                    <i class="fa-solid fa-comment-dots animate-pulse"></i>
+                                </div>
+                                <span class="workflow-badge badge-cyan">Entrada</span>
+                                <h4 class="h5 text-white mb-2 fw-semibold">Usuario dice algo</h4>
+                                <p class="text-secondary small m-0">El usuario formula una pregunta o solicitud.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Comprensión -->
+                        <div class="col-lg-3 col-md-6 workflow-step">
+                            <div
+                                class="workflow-card h-100 p-4 rounded-4 border border-secondary border-opacity-10 bg-black bg-opacity-30 position-relative text-center">
+                                <div class="step-badge-top">2</div>
+                                <div class="mb-3 text-warning fs-1">
+                                    <i class="fa-solid fa-brain"></i>
+                                </div>
+                                <span class="workflow-badge badge-yellow">Comprensión</span>
+                                <h4 class="h5 text-white mb-2 fw-semibold">Agente entiende</h4>
+                                <p class="text-secondary small m-0">Entiende el leguaje, comprende lo que el usuario
+                                    quiere</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Selección -->
+                        <div class="col-lg-3 col-md-6 workflow-step">
+                            <div
+                                class="workflow-card h-100 p-4 rounded-4 border border-secondary border-opacity-10 bg-black bg-opacity-30 position-relative text-center">
+                                <div class="step-badge-top">3</div>
+                                <div class="mb-3 text-danger fs-1">
+                                    <i class="fa-solid fa-hand-pointer"></i>
+                                </div>
+                                <span class="workflow-badge badge-red">Selección</span>
+                                <h4 class="h5 text-white mb-2 fw-semibold">Elige skill</h4>
+                                <p class="text-secondary small m-0">Ejecuta la acción, realiza la tarea concreta.</p>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Ejecución -->
+                        <div class="col-lg-3 col-md-6 workflow-step">
+                            <div
+                                class="workflow-card h-100 p-4 rounded-4 border border-secondary border-opacity-10 bg-black bg-opacity-30 position-relative text-center">
+                                <div class="step-badge-top">4</div>
+                                <div class="mb-3 text-success fs-1">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                </div>
+                                <span class="workflow-badge badge-green">Ejecución</span>
+                                <h4 class="h5 text-white mb-2 fw-semibold">Ejecuta y responde</h4>
+                                <p class="text-secondary small m-0">Realiza la acción y devuelve el resultado.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🌌 Footer al final del portal -->
+        <footer class="text-center py-3 w-100 border-top border-secondary border-opacity-10 mt-auto">
+            <p class="text-muted small m-0 mb-2">&copy; 2026 Ecosistema .agent & AI Skills. Creado con arquitectura de
                 desarrollo autónomo.</p>
+            <a href="https://github.com/macc-academico/ejemploSkill" target="_blank" rel="noopener noreferrer"
+                class="text-info text-decoration-none small fs-6 d-inline-flex align-items-center gap-2">
+                <i class="fa-brands fa-github fs-5"></i> Ver repositorio en GitHub
+            </a>
         </footer>
     </section>
 
     <!-- 🎬 Modal del Modo Presentación (Slides en Pantalla Completa) -->
     <div id="presentation-overlay" class="presentation-overlay">
-        <button id="btn-close-presentation" class="close-presentation-btn"><i class="fa-solid fa-xmark me-2"></i>Salir
-            de Presentación</button>
+        <button id="btn-close-presentation" class="close-presentation-btn">
+            <i class="fa-solid fa-xmark me-md-2"></i>
+            <span class="d-none d-md-inline">Salir de Presentación</span>
+        </button>
         <div class="slide-deck">
 
             <!-- Slide 1: Estructura de Directorios (Plano 1) -->

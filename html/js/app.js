@@ -325,7 +325,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const sections = [
         document.getElementById("hero"),
         document.getElementById("explorer"),
-        document.getElementById("skills-education")
+        document.getElementById("skills-education"),
+        document.getElementById("agent-workflow")
     ];
 
     window.addEventListener("scroll", () => {
