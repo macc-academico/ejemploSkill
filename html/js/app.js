@@ -254,7 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const slideCards = document.querySelectorAll(".slide-card");
     const btnPrevSlide = document.getElementById("btn-prev-slide");
     const btnNextSlide = document.getElementById("btn-next-slide");
-    const slideProgress = document.getElementById("slide-progress");
+    // const slideProgress = document.getElementById("slide-progress");
 
     let currentSlide = 0;
     const totalSlides = slideCards.length;
@@ -274,8 +274,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // Mostrar slide actual
         slideCards[currentSlide].classList.add("active-slide");
 
-        // Actualizar barra de progreso
-        slideProgress.textContent = `${currentSlide + 1} / ${totalSlides}`;
+        // Actualizar barra de progreso (eliminado según feedback)
+        // if (slideProgress) slideProgress.textContent = `${currentSlide + 1} / ${totalSlides}`;
     }
 
     // Iniciar Presentación

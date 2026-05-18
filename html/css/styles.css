@@ -29,7 +29,7 @@
 @media (min-width: 992px) {
     html {
         scroll-behavior: smooth;
-        scroll-snap-type: y mandatory;
+        scroll-snap-type: y proximity; /* Más fluido y natural, evita la sensación de lentitud o bloqueo forzado */
         overflow-y: scroll;
         height: 100%;
     }
@@ -38,14 +38,27 @@
         min-height: 100vh;
         height: 100vh; /* Pantalla completa exacta */
         display: flex;
+        flex-direction: column; /* Flujo vertical para control de márgenes */
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start; /* Alinea los contenidos arriba para que comiencen debajo del header flotante */
         scroll-snap-align: start;
         scroll-snap-stop: always;
         position: relative;
         box-sizing: border-box;
-        padding: 3rem 1rem;
+        padding: 3rem 1rem 3.5rem 1rem; /* Permite que el recuadro suba e ingrese por debajo del header flotante */
+        scroll-margin-top: 2rem; /* Sincronizado para anclajes con superposición */
         overflow: hidden;
+    }
+
+    /* 🪐 El Hero se mantiene perfectamente centrado verticalmente */
+    #hero.fullscreen-section {
+        justify-content: center;
+    }
+
+    /* 🎯 Evita que my-auto empuje las filas principales hacia abajo en escritorio */
+    .fullscreen-section > .row {
+        margin-top: 0 !important;
+        margin-bottom: auto !important;
     }
 
     /* 📁 El Explorador (Sección 2) se mantiene estrictamente fijo en pantalla completa */
@@ -55,11 +68,11 @@
 
     /* 🖥️ Ajustes de Proporciones y Alturas en Pantallas Grandes para la Sección 2 */
     #explorer .explorer-container {
-        height: 75vh;
-        min-height: 640px;
+        height: 58vh;
+        min-height: 480px;
     }
 
-    #explorer .explorer-container .glass-card {
+    #explorer .explorer-panel {
         height: 100% !important;
         display: flex;
         flex-direction: column;
@@ -68,7 +81,7 @@
 
     /* 🌀 Scroll inteligente y sutil solo para el bloque de contenidos internos del panel derecho */
     #explorer .dynamic-scroll-content {
-        max-height: calc(75vh - 120px) !important;
+        max-height: calc(58vh - 100px) !important;
         overflow-y: auto !important;
         padding-right: 0.5rem;
     }
@@ -78,7 +91,7 @@
         padding-right: 1rem;
     }
 
-    #explorer #dynamic-pane .glass-card > div:first-child {
+    #explorer #dynamic-pane .explorer-panel > div:first-child {
         flex-shrink: 0;
     }
 
@@ -93,24 +106,40 @@
     #explorer #dynamic-pane .code-body {
         flex-grow: 1;
         overflow-y: auto;
-        max-height: calc(62vh - 350px) !important;
+        max-height: calc(58vh - 280px) !important;
+        min-height: 180px;
     }
 }
 
 /* 📱 Comportamiento Fluido e Ilimitado en Móviles y Tablets */
-@media (max-width: 991.98px) {
+@media (max-width: 1024px) {
     html {
         scroll-snap-type: none !important; /* Desactivar snapping */
         height: auto;
     }
 
-    .fullscreen-section {
+    .fullscreen-section,
+    #explorer.fullscreen-section,
+    #skills-education.fullscreen-section,
+    #agent-workflow.fullscreen-section {
         min-height: auto !important;
         height: auto !important; /* Altura natural basada en el contenido */
         display: block !important; /* Desactivar flexbox rígido */
-        padding: 6.5rem 1rem 3.5rem 1rem !important; /* Aumentado para evitar que el header flotante tape el contenido */
-        scroll-margin-top: 5.5rem; /* Permite que el scroll por anclas de navegación se alinee perfectamente */
+        padding: 3.5rem 1.2rem 3rem 1.2rem !important; /* Permite superposición responsiva debajo del header flotante */
+        scroll-margin-top: 2.5rem; /* Sincronizado para anclajes con superposición */
         scroll-snap-align: none !important;
+        overflow: visible !important; /* IMPORTANTE: Muestra el desborde para que no se oculte nada en móvil/tablets */
+    }
+
+    /* 🪐 Ajuste Premium para la Portada (Sección 1) en Celulares y Tablets */
+    #hero.fullscreen-section {
+        padding-top: 8rem !important; /* Espacio generoso para evitar que el header tape el título o el badge */
+        padding-bottom: 5rem !important;
+        min-height: 85vh !important; /* Ocupa gran parte de la pantalla para presentarse como una portada majestuosa */
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     /* 📁 Adaptaciones Específicas del Explorador (Sección 2) para Celulares y Tablets */
@@ -118,17 +147,24 @@
         min-height: auto;
     }
 
-    #explorer .explorer-container .glass-card {
+    #explorer .explorer-container .explorer-panel {
         height: auto !important;
         min-height: auto !important;
-        margin-bottom: 1.5rem;
+    }
+
+    #explorer .explorer-tree-col {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+        padding-right: 0 !important;
+        padding-bottom: 1.5rem !important;
+        margin-bottom: 1.5rem !important;
     }
 
     #explorer .explorer-tree {
         border-right: none !important;
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: none !important;
         padding-right: 0 !important;
-        padding-bottom: 1.5rem;
+        padding-bottom: 0 !important;
     }
 
     #explorer #dynamic-pane .code-body {
@@ -204,8 +240,8 @@ p, li, span, code {
 /* 🧪 Tarjetas con Efecto de Cristal (Glassmorphism) */
 .glass-card {
     background: var(--bg-surface);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(10px) saturate(180%); /* Optimizado de 20px a 10px para un rendimiento de scroll ultra-rápido de 60/120fps */
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
     border: 1px solid var(--border-color);
     border-radius: 20px;
     box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.5);
@@ -456,9 +492,9 @@ p, li, span, code {
 
 .slide-deck {
     width: 100%;
-    max-width: 1100px;
+    max-width: 1400px; /* Incrementado para ocupar casi todo el ancho de la pantalla */
     height: 100%;
-    max-height: 700px;
+    max-height: 85vh; /* Incrementado para ocupar casi toda la altura de la pantalla */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -471,15 +507,18 @@ p, li, span, code {
     -webkit-backdrop-filter: blur(25px);
     border: 2px solid rgba(0, 242, 254, 0.25);
     border-radius: 24px;
-    padding: 3.5rem;
+    padding: 1.5rem 2rem 2.2rem 2rem; /* Relleno compacto para dar el 100% de prioridad y espacio a la imagen */
     flex-grow: 1;
     display: none; /* Se maneja dinámicamente */
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* Lleva la cabecera arriba y deja el resto a la imagen */
+    align-items: center;
     box-shadow: 0 0 50px rgba(0, 242, 254, 0.15);
     transform: scale(0.95);
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     opacity: 0;
+    box-sizing: border-box;
+    height: 100%;
 }
 
 .slide-card.active-slide {
@@ -514,18 +553,23 @@ p, li, span, code {
     margin-right: 0.8rem;
 }
 
-/* Navegación de Diapositivas */
+/* Navegación de Diapositivas en el medio de la pantalla */
 .presentation-controls {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin-top: 2rem;
-    padding: 0 1rem;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    pointer-events: none; /* Permite clicks pasantes en el medio */
+    z-index: 10;
 }
 
 .slide-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border-color);
+    background: rgba(18, 22, 45, 0.9);
+    border: 2px solid var(--neon-cyan);
     color: white;
     width: 60px;
     height: 60px;
@@ -535,14 +579,44 @@ p, li, span, code {
     justify-content: center;
     font-size: 1.5rem;
     cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
     transition: all 0.3s ease;
+    pointer-events: auto; /* Reactiva clicks en los botones */
 }
 
 .slide-btn:hover {
     background: var(--neon-cyan);
     color: var(--bg-dark);
-    box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(0, 242, 254, 0.7);
     border-color: var(--neon-cyan);
+}
+
+#btn-prev-slide {
+    position: absolute;
+    left: -80px; /* Sacado fuera de la tarjeta a la izquierda */
+}
+
+#btn-next-slide {
+    position: absolute;
+    right: -80px; /* Sacado fuera de la tarjeta a la derecha */
+}
+
+.slide-progress {
+    position: absolute;
+    bottom: -50px; /* Colocado discretamente debajo de la diapositiva */
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: white;
+    background: rgba(10, 13, 30, 0.85);
+    padding: 0.5rem 1.5rem;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    pointer-events: auto;
 }
 
 .close-presentation-btn {
@@ -595,7 +669,7 @@ p, li, span, code {
 }
 
 /* 📱 Personalizaciones Responsive */
-@media (max-width: 991.98px) {
+@media (max-width: 1024px) {
     .explorer-tree {
         border-right: none;
         border-bottom: 1px solid var(--border-color);
@@ -613,9 +687,9 @@ p, li, span, code {
     .slide-card p {
         font-size: 1.15rem;
     }
-    /* Reducir altura del frame de imagen para evitar desbordes */
+    /* Maximizar altura del frame de imagen ocupando casi toda la pantalla */
     .gallery-img-frame {
-        height: 220px !important;
+        height: 55vh !important;
     }
     /* Convertir botón cerrar en un círculo minimalista premium en móviles */
     .close-presentation-btn {
@@ -636,7 +710,21 @@ p, li, span, code {
         font-size: 1.2rem !important;
     }
     .presentation-controls {
-        margin-top: 1rem !important;
+        position: absolute !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        margin-top: 0 !important;
+    }
+    #btn-prev-slide {
+        left: 10px !important;
+    }
+    #btn-next-slide {
+        right: 10px !important;
+    }
+    .slide-progress {
+        bottom: -35px !important;
+        font-size: 1rem !important;
+        padding: 0.3rem 1.2rem !important;
     }
 }
 
@@ -649,7 +737,7 @@ p, li, span, code {
         font-size: 1.8rem !important;
     }
     .gallery-img-frame {
-        height: 160px !important;
+        height: 48vh !important;
     }
     .presentation-overlay {
         padding: 0.8rem !important;
@@ -660,7 +748,21 @@ p, li, span, code {
         font-size: 1.1rem !important;
     }
     .presentation-controls {
-        margin-top: 0.8rem !important;
+        position: absolute !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        margin-top: 0 !important;
+    }
+    #btn-prev-slide {
+        left: 5px !important;
+    }
+    #btn-next-slide {
+        right: 5px !important;
+    }
+    .slide-progress {
+        bottom: -25px !important;
+        font-size: 0.85rem !important;
+        padding: 0.2rem 1rem !important;
     }
 }
 
@@ -684,9 +786,13 @@ p, li, span, code {
 .gallery-card {
     border-radius: 20px;
     background: rgba(5, 7, 15, 0.8) !important;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    flex-grow: 1; /* Ocupa todo el espacio vertical disponible */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 100% !important;
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s, box-shadow 0.3s;
 }
 
@@ -695,7 +801,7 @@ p, li, span, code {
     border: 1px solid rgba(0, 242, 254, 0.35) !important;
 }
 .gallery-card.cyan-glow:hover {
-    transform: scale(1.015);
+    transform: scale(1.005);
     border-color: rgba(0, 242, 254, 0.8) !important;
     box-shadow: 0 0 25px rgba(0, 242, 254, 0.2);
 }
@@ -705,7 +811,7 @@ p, li, span, code {
     border: 1px solid rgba(142, 45, 226, 0.35) !important;
 }
 .gallery-card.purple-glow:hover {
-    transform: scale(1.015);
+    transform: scale(1.005);
     border-color: rgba(142, 45, 226, 0.8) !important;
     box-shadow: 0 0 25px rgba(142, 45, 226, 0.2);
 }
@@ -714,17 +820,20 @@ p, li, span, code {
 .gallery-img-frame {
     border-radius: 12px;
     overflow: hidden;
-    background: #000;
-    height: 350px;
+    background: transparent; /* Fondo transparente para máxima fidelidad visual */
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-grow: 1;
 }
 
 .gallery-img-frame img {
     max-height: 100%;
     max-width: 100%;
-    object-fit: contain;
+    object-fit: contain; /* Ajuste fluido inteligente que respeta relaciones rectangular/cuadrada */
+    border-radius: 8px;
 }
 
 /* 🧭 BARRA DE NAVEGACIÓN FLOTANTE Y GLASSMORPHIC */
@@ -740,9 +849,9 @@ html {
     z-index: 1000;
     width: 90%;
     max-width: 800px;
-    background: rgba(10, 13, 30, 0.7);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
+    background: rgba(10, 13, 30, 0.75);
+    backdrop-filter: blur(12px); /* Optimizado de 25px a 12px para maximizar fps durante el scroll */
+    -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 100px;
     padding: 0.6rem 2rem;
@@ -912,7 +1021,7 @@ html {
     100% { opacity: 0.8; transform: translate(2px, -50%); }
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 1024px) {
     .workflow-steps-container {
         padding-top: 1.5rem;
     }
